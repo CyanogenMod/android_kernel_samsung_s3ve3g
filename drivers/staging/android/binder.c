@@ -3603,7 +3603,8 @@ static int binder_proc_show(struct seq_file *m, void *unused)
 	bool valid_proc = false;
 
 	if (do_lock)
-		mutex_lock(&binder_lock);
+		binder_lock(__func__);
+	return 0;
 
 	hlist_for_each_entry(itr, pos, &binder_procs, proc_node) {
 		if (itr == proc) {
